@@ -1,0 +1,9 @@
+{
+ "name": "Calendar",
+ "version": "1.0.0",
+ "dependencies": { 
+ 	"jquery": "~1.11.1",
+ 	"backbone": null,
+ 	"bootstrap": null 
+ }
+}
