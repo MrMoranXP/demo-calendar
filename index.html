@@ -8,92 +8,8 @@
         <link rel="stylesheet" href="css/style.min.css"/>
     </head>
     <body>
-        <div id="calendar">
-            <div class="container-fluid">
-                <div class="col-md-6">
-                    <div class="pull-left">
-                        <button class="btn btn-default">Сегодня</button>
-                        <button class="btn btn-default">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </button>
-                        <span id="calendar-current" class="calendar-current">Август 2014</span>
-                        <button class="btn btn-default">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="btn-group pull-right">
-                        <button class="btn btn-default">День</button>
-                        <button class="btn btn-default">Неделя</button>
-                        <button class="btn btn-default active">Месяц</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div id="calendar-view" class="col-md-12">
-                        <table class="calendar-view calendar-view--month">
-                            <thead>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </thead>    
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>    
-        </div>
-        
+        <div id="calendar"></div>
+
         <!-- Templates -->
 
         <script type="text/template" id="calendarControl-template">
@@ -117,7 +33,7 @@
                 </div>
             </div>
         </script>
-        
+
         <script type="text/template" id="calendarViewDay-template">
             <thead>
                 <th>День</th>
@@ -221,7 +137,7 @@
                 </tr>
             </tbody>
         </script>
-        
+
         <script type="text/template" id="calendarViewWeek-template">
             <thead>
                 <th>Неделя</th>
@@ -469,7 +385,7 @@
                 </tr>
             </tbody>
         </script>
-        
+
         <script type="text/template" id="calendarViewMonth-template">
             <thead>
                 <th>Месяц</th>
@@ -527,10 +443,10 @@
                 </tr>
             </tbody>
         </script>
-        
+
         <script src="js/app.min.js"></script>
-        
-        
-        
+
+
+
     </body>
 </html>
