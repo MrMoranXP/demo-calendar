@@ -6,6 +6,20 @@ var Calendar = (function(){
                 "view": 'day'
             }
         });
+        
+        var CalendarEvent = Backbone.Model.extend({
+            defaults: {
+                "name": '',
+                "description": '',
+                "day": '',
+                "start": '',
+                "stop": ''
+            }
+        });
+        
+        var CalendarEventCollection = Backbone.Collection.extend({
+            model: CalendarEvent
+        });
 
         var CalendarControlView = Backbone.View.extend({
             tagName: "div",
@@ -160,6 +174,7 @@ var Calendar = (function(){
               CalendarViewMonth.__super__.initialize.call(this);
 
               this.template = _.template($('#calendarViewMonth-template').html());
+              this.date = new Date();
             }
         });
 

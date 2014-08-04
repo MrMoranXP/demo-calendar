@@ -35,7 +35,7 @@
         </script>
 
         <script type="text/template" id="calendarViewDay-template">
-            <table>
+            <table class="table calendar-view calendar-view--day">
                 <tbody>
                     <%
                         var hour;
@@ -43,13 +43,7 @@
                         for (hour = 0; hour < 24; hour++) {
                             hours = '';
                             if (hour < 10) hours = '0';
-                            hours += hour+':00-';
-                            if (hour < 9) hours += '0';
-                            if (hour < 23) {
-                                hours += hour + 1 + ':00';
-                            } else {
-                                hours += '00:00';
-                            }
+                            hours += hour+':00';
                     %>
                     <tr>
                         <td><%- hours %></td>
@@ -61,7 +55,7 @@
         </script>
 
         <script type="text/template" id="calendarViewWeek-template">
-            <table>
+            <table class="table calendar-view calendar-view--week">
                 <thead>
                     <th></th>
                     <th>Понедельник</th>
@@ -74,19 +68,12 @@
                 </thead>
                 <tbody>
                     <%
-                        var date;
                         var hour;
                         var hours;
                         for (hour = 0; hour < 24; hour++) {
                             hours = '';
                             if (hour < 10) hours = '0';
-                            hours += hour+':00-';
-                            if (hour < 9) hours += '0';
-                            if (hour < 23) {
-                                hours += hour + 1 + ':00';
-                            } else {
-                                hours += '00:00';
-                            }
+                            hours += hour+':00';
                     %>
                     <tr>
                         <td><%- hours %></td>
@@ -104,10 +91,18 @@
         </script>
 
         <script type="text/template" id="calendarViewMonth-template">
-            <table>
+            <table class="table table-bordered calendar-view calendar-view--month">
+                <thead>
+                    <th>Понедельник</th>
+                    <th>Вторник</th>
+                    <th>Среда</th>
+                    <th>Четверг</th>
+                    <th>Пятница</th>
+                    <th>Суббота</th>
+                    <th>Воскресенье</th>
+                </thead>
                 <tbody>
                     <tr>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>

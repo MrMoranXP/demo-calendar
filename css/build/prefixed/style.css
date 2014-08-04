@@ -6537,3 +6537,35 @@ body {
 .calendar-current {
   padding: 0 10px;
 }
+
+.calendar-view {
+  margin-top: 20px;
+}
+
+.calendar-view td:hover {
+  background-color: #eaeaea;
+}
+
+.calendar-view--day td:first-child {
+  width: 10%;
+}
+
+.calendar-view--day td:last-child {
+  width: 90%;
+}
+
+.calendar-view--week th {
+  width: 13%;
+}
+
+.calendar-view--week th:first-child {
+  width: 9%;
+}
+
+.calendar-view--month th {
+  width: 14%;
+}
+
+.calendar-view--month tbody tr {
+  height: 150px;
+}
