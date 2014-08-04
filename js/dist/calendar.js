@@ -3,11 +3,31 @@ var Calendar = (function(){
 
         var CalendarControlModel = Backbone.Model.extend({
             defaults: {
-                "view": 'day'
+                "view": 'month'
             }
         });
-        
-        var CalendarEvent = Backbone.Model.extend({
+
+        var CalendarModel = Backbone.Model.extend({
+            defaults: {
+                "day": '',
+                "month": '',
+                "year": '',
+                "view": '',
+                "events": {}
+            }
+        });
+
+        var CalendarHourModel = Backbone.Model.extend({
+            "hour": '',
+            "isEvent": 0
+        });
+
+        var CalendarDayModel = Backbone.Model.extend({
+            "day": '',
+            "eventCount": 0
+        });
+
+        var CalendarEventModel = Backbone.Model.extend({
             defaults: {
                 "name": '',
                 "description": '',
@@ -16,9 +36,17 @@ var Calendar = (function(){
                 "stop": ''
             }
         });
-        
+
         var CalendarEventCollection = Backbone.Collection.extend({
-            model: CalendarEvent
+            model: CalendarEventModel
+        });
+
+        var CalendarHourCollection = Backbone.Collection.extend({
+            model: CalendarHourModel
+        });
+
+        var CalendarDayCollection = Backbone.Collection.extend({
+            model: CalendarDayModel
         });
 
         var CalendarControlView = Backbone.View.extend({
@@ -34,27 +62,37 @@ var Calendar = (function(){
             },
             initialize: function() {
                 this.date = new Date();
-                this.model.set('date', this.getDate(this.model.get('view')));
+                this.setNewDate();
+                this.calendarEvents = new CalendarEventCollection;
                 this.listenTo(this.model, 'change', this.render);
                 this.listenTo(this.model, 'destroy', this.remove);
             },
             template: _.template($('#calendarControl-template').html()),
             render: function() {
                 this.calendarView = {};
-                var calendarControlModel = new CalendarControlModel;
+                var dataForCalendarModel = {
+                    "day": this.date.getDate(),
+                    "month": this.date.getMonth(),
+                    "year": this.date.getFullYear(),
+                    "events": this.findEvents()
+                };
+                this.calendarModel = new CalendarModel(dataForCalendarModel);
                 switch (this.model.get('view')) {
                     case 'day':
-                        this.calendarView = new CalendarViewDay({model: calendarControlModel});
+                        this.calendarView = new CalendarViewDay({model: this.calendarModel});
                         break;
                     case 'week':
-                        this.calendarView = new CalendarViewWeek({model: calendarControlModel});
+                        this.calendarView = new CalendarViewWeek({model: this.calendarModel});
                         break;
                     default:
-                        this.calendarView = new CalendarViewMonth({model: calendarControlModel});
+                        this.calendarView = new CalendarViewMonth({model: this.calendarModel});
                         break;
                 }
                 this.$el.html(this.template(this.model.toJSON())).append(this.calendarView.render().el);;
                 return this;
+            },
+            findEvents: function() {
+                return {}
             },
             getMonthName: function(num) {
                 var months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
@@ -156,26 +194,59 @@ var Calendar = (function(){
         var CalendarViewDay = CalendarView.extend({
             initialize: function () {
               CalendarViewDay.__super__.initialize.call(this);
-
               this.template = _.template($('#calendarViewDay-template').html());
+              this.hourCollection = new CalendarHourCollection;
+
             }
         });
 
         var CalendarViewWeek = CalendarView.extend({
             initialize: function () {
               CalendarViewWeek.__super__.initialize.call(this);
-
               this.template = _.template($('#calendarViewWeek-template').html());
             }
         });
 
         var CalendarViewMonth = CalendarView.extend({
             initialize: function () {
-              CalendarViewMonth.__super__.initialize.call(this);
+                CalendarViewMonth.__super__.initialize.call(this);
+                this.template = _.template($('#calendarViewMonth-template').html());
+                this.dayCollection = new CalendarDayCollection;
+                this.date = new Date(this.model.get('year'), this.model.get('month'));
+                setTimeout(this.renderCalendar, 0);
+            },
+            getDayOfWeek: function() {
+                var dayOfWeek = this.date.getDay();
+                if (dayOfWeek == 0) dayOfWeek = 7;
+                return dayOfWeek - 1;
+            },
+            renderCalendar: function() {
+                var i;
+                var dayModel = {};
+                var dayOfWeek = this.getDayOfWeek();
+                for (i = 0; i < dayOfWeek; i++) {
 
-              this.template = _.template($('#calendarViewMonth-template').html());
-              this.date = new Date();
+                }
+                for (i = 0; i < 42; i++) {
+                    dayModel = {};
+                    if (i > dayOfWeek) {
+                        dayModel = {
+                            "day": this.date.getDate(),
+                            "eventCount": 0
+                        };
+                        this.date.setDate(this.date.getDate()+1);
+                    }
+                    //this.dayCollection.add(dayModel);
+                }
             }
+        });
+
+        var CalendarDayView = Backbone.view.extend({
+
+        });
+
+        var CalendarHourView = Backbone.view.extend({
+
         });
 
         var calendarControlModel = new CalendarControlModel;

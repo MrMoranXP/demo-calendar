@@ -36,21 +36,7 @@
 
         <script type="text/template" id="calendarViewDay-template">
             <table class="table calendar-view calendar-view--day">
-                <tbody>
-                    <%
-                        var hour;
-                        var hours;
-                        for (hour = 0; hour < 24; hour++) {
-                            hours = '';
-                            if (hour < 10) hours = '0';
-                            hours += hour+':00';
-                    %>
-                    <tr>
-                        <td><%- hours %></td>
-                        <td></td>
-                    </tr>
-                    <% } %>
-                </tbody>
+                <tbody></tbody>
             </table>
         </script>
 
@@ -66,27 +52,7 @@
                     <th>Суббота</th>
                     <th>Воскресенье</th>
                 </thead>
-                <tbody>
-                    <%
-                        var hour;
-                        var hours;
-                        for (hour = 0; hour < 24; hour++) {
-                            hours = '';
-                            if (hour < 10) hours = '0';
-                            hours += hour+':00';
-                    %>
-                    <tr>
-                        <td><%- hours %></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <% } %>
-                </tbody>
+                <tbody></tbody>
             </table>
         </script>
 
@@ -101,18 +67,17 @@
                     <th>Суббота</th>
                     <th>Воскресенье</th>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
+                <tbody class="js-calendarBody"></tbody>
             </table>
+        </script>
+
+        <script type="text/template" id="hourViewDay-template">
+            <td><%- hours %></td>
+            <td class="js-EventContainer"></td>
+        </script>
+
+        <script type="text/template" id="dayViewMonth-template">
+            <%- day %><span class="js-EventContainer"></span>
         </script>
 
         <script src="js/app.min.js"></script>

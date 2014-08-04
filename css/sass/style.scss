@@ -16,6 +16,10 @@ body {
     background-color: #eaeaea;
 }
 
+.calendar-view--day td:first-child:hover, .calendar-view--week td:first-child:hover {
+    background-color: #ffffff;
+}
+
 .calendar-view--day td:first-child {
     width: 10%
 }
